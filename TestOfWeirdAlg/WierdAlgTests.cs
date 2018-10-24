@@ -58,7 +58,7 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, null, 0, 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 0, 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
 
             //Act
 
@@ -148,7 +148,7 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, null, 0, inputList1.Count - 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 0, inputList1.Count - 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
 
             //Act
 
@@ -238,7 +238,7 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, null, 0, 2).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 0, 2).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
 
             //Act
 
@@ -331,7 +331,7 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, null, 4, 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 4, 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
 
             //Act
 
@@ -422,7 +422,7 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, null, 3, 0).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 3, 0).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
 
             //Act
 

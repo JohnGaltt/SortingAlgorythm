@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SortingAlgorythm
 {
@@ -74,7 +71,7 @@ namespace SortingAlgorythm
                 }
             };
 
-            var newList = OrderHelper.Reorder(inputList1, null, 0, 1).OrderBy(x => x.OrderValue).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 0, 1).OrderBy(x => x.OrderValue).ToArray();
 
             Console.WriteLine("Test");
             for (int i = 0; i < newList.Length; i++)
@@ -95,22 +92,12 @@ namespace SortingAlgorythm
 
         public static bool operator > (OrderItem oldItem, OrderItem newItem)
         {
-            if (oldItem.OrderValue > newItem.OrderValue)
-            {
-                return true;
-            }
-               
-            return false;
+            return oldItem.OrderValue > newItem.OrderValue;
         }
 
         public static bool operator <(OrderItem oldItem, OrderItem newItem)
         {
-            if (oldItem.OrderValue < newItem.OrderValue)
-            {
-                return true;
-            }
-
-            return false;
+            return oldItem.OrderValue < newItem.OrderValue;
         }
 
         public static double operator + (OrderItem oldItem, OrderItem newItem)
@@ -124,19 +111,19 @@ namespace SortingAlgorythm
 
     public static class OrderHelper
     {
-       public static OrderItem[] Reorder(IEnumerable<OrderItem> source, Expression<Func<OrderItem>> orderByPath, int oldPosition, int newPosition)
+        private const int StartingPoint = 5;
+
+        public static OrderItem[] Reorder(IEnumerable<OrderItem> source, int oldPosition, int newPosition)
        {
-           double newOrderValue = 0;
+           double newOrderValue;
             var orderItems = source as OrderItem[] ?? source.ToArray();
             if (orderItems[oldPosition] > orderItems[newPosition])
             {
                 if (newPosition == 0)
                 {
-                    newOrderValue = 5;
+                    newOrderValue = StartingPoint;
                     orderItems[oldPosition].OrderValue = newOrderValue;
-                }
-                else
-                {
+                } else {
                     newOrderValue = Math.Ceiling((orderItems[newPosition] + orderItems[newPosition - 1]) / 2);
                     orderItems[oldPosition].OrderValue = newOrderValue;
                 }
@@ -178,9 +165,7 @@ namespace SortingAlgorythm
                             }
                         }
                     }
-                }
-
-                    
+                }       
             }
 
            return orderItems;
