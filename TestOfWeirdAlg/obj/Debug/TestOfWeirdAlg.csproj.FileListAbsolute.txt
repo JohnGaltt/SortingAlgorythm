@@ -1,0 +1,8 @@
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\bin\Debug\TestOfWeirdAlg.dll
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\bin\Debug\TestOfWeirdAlg.pdb
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\bin\Debug\SortingAlgorythm.exe
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\bin\Debug\SortingAlgorythm.pdb
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\obj\Debug\TestOfWeirdAlg.csprojResolveAssemblyReference.cache
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\obj\Debug\TestOfWeirdAlg.dll
+D:\Work\SortingAlgorythm\SortingAlgorythm\TestOfWeirdAlg\obj\Debug\TestOfWeirdAlg.pdb

@@ -1,0 +1,6 @@
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\bin\Debug\SortingAlgorythm.exe.config
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\obj\Debug\SortingAlgorythm.csprojResolveAssemblyReference.cache
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\bin\Debug\SortingAlgorythm.exe
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\bin\Debug\SortingAlgorythm.pdb
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\obj\Debug\SortingAlgorythm.exe
+D:\Work\SortingAlgorythm\SortingAlgorythm\SortingAlgorythm\obj\Debug\SortingAlgorythm.pdb
