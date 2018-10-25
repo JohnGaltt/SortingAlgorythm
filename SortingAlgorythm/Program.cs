@@ -71,13 +71,7 @@ namespace SortingAlgorythm
                 }
             };
 
-            var newList = OrderHelper.Reorder(inputList1, 0, 1).OrderBy(x => x.OrderValue).ToArray();
-
-            Console.WriteLine("Test");
-            for (int i = 0; i < newList.Length; i++)
-            {
-                Console.WriteLine($"{newList[i].OrderValue} {newList[i].OrderName}");  
-            }
+            //var newList = OrderHelper.Reorder(inputList1, 0, 1).OrderBy(x => x.OrderValue).ToArray();
 
 
             Console.ReadLine();
@@ -86,11 +80,11 @@ namespace SortingAlgorythm
 
     public class OrderItem
     {
-        public double OrderValue { get; set; }
+        public int OrderValue { get; set; }
 
         public string OrderName { get; set; }
 
-        public static bool operator > (OrderItem oldItem, OrderItem newItem)
+        public static bool operator >(OrderItem oldItem, OrderItem newItem)
         {
             return oldItem.OrderValue > newItem.OrderValue;
         }
@@ -100,75 +94,90 @@ namespace SortingAlgorythm
             return oldItem.OrderValue < newItem.OrderValue;
         }
 
-        public static double operator + (OrderItem oldItem, OrderItem newItem)
+        public static double operator +(OrderItem oldItem, OrderItem newItem)
         {
             return oldItem.OrderValue + newItem.OrderValue;
         }
     }
 
-
-
-
     public static class OrderHelper
     {
+        public static int DivideRoundingUp(int x, int y)
+        {
+            int remainder;
+            var quotient = Math.DivRem(x, y, out remainder);
+            return remainder == 0 ? quotient : quotient + 1;
+        }
+
         private const int StartingPoint = 5;
 
         public static OrderItem[] Reorder(IEnumerable<OrderItem> source, int oldPosition, int newPosition)
        {
-           double newOrderValue;
-            var orderItems = source as OrderItem[] ?? source.ToArray();
-            if (orderItems[oldPosition] > orderItems[newPosition])
-            {
-                if (newPosition == 0)
-                {
-                    newOrderValue = StartingPoint;
-                    orderItems[oldPosition].OrderValue = newOrderValue;
-                } else {
-                    newOrderValue = Math.Ceiling((orderItems[newPosition] + orderItems[newPosition - 1]) / 2);
-                    orderItems[oldPosition].OrderValue = newOrderValue;
-                }
+           try
+           {
 
-                if (newOrderValue == orderItems[newPosition].OrderValue)
-                {
-                    orderItems[newPosition].OrderValue++;
-                    while (orderItems[newPosition + 1].OrderValue == orderItems[newPosition].OrderValue)
-                    {
-                        orderItems[newPosition + 1].OrderValue++;
-                        newPosition++;
-                    }
-                }
-               
-            } else if (orderItems[oldPosition] < orderItems[newPosition]) {
+               int newOrderValue;
+               var orderItems = source as OrderItem[] ?? source.ToArray();
 
-                //end
-                if (newPosition == orderItems.Length - 1)
-                {
-                    orderItems[oldPosition].OrderValue = orderItems[newPosition].OrderValue + 1;
-                }
-                else
-                {
-                    newOrderValue = Math.Ceiling((orderItems[newPosition] + orderItems[newPosition + 1]) / 2);
-                    orderItems[oldPosition].OrderValue = newOrderValue;
-                    if (newOrderValue == orderItems[newPosition + 1].OrderValue)
-                    {
-                        orderItems[newPosition + 1].OrderValue++;
-                        if (newPosition + 1 != orderItems.Length - 1)
-                        {
-                            while (orderItems[newPosition + 1].OrderValue == orderItems[newPosition + 2].OrderValue)
-                            {
-                                orderItems[newPosition + 2].OrderValue++;
-                                newPosition++;
-                                if (newPosition == orderItems.Length - 2)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }       
-            }
+               if (orderItems[oldPosition] > orderItems[newPosition])
+               {
+                   if (newPosition == 0)
+                   {
+                       newOrderValue = StartingPoint;
+                       orderItems[oldPosition].OrderValue = newOrderValue;
+                   }
+                   else
+                   {
+                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue, orderItems[newPosition - 1].OrderValue);
+                       orderItems[oldPosition].OrderValue = newOrderValue;
+                   }
 
-           return orderItems;
-       }
+                   if (newOrderValue != orderItems[newPosition].OrderValue) return orderItems;
+
+                   orderItems[newPosition].OrderValue++;
+
+                   while (orderItems[newPosition + 1].OrderValue == orderItems[newPosition].OrderValue)
+                   {
+                       orderItems[newPosition + 1].OrderValue++;
+                       newPosition++;
+                   }
+
+               }
+               else if (orderItems[oldPosition] < orderItems[newPosition])
+               {
+                   if (newPosition == orderItems.Length - 1)
+                   {
+                       orderItems[oldPosition].OrderValue = orderItems[newPosition].OrderValue + 1;
+                   }
+                   else
+                   {
+                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue, orderItems[newPosition + 1].OrderValue);
+                       orderItems[oldPosition].OrderValue = newOrderValue;
+
+                       if (newOrderValue != orderItems[newPosition + 1].OrderValue) return orderItems;
+                       orderItems[newPosition + 1].OrderValue++;
+
+                       if (newPosition + 1 == orderItems.Length - 1) return orderItems;
+
+                       while (orderItems[newPosition + 1].OrderValue == orderItems[newPosition + 2].OrderValue)
+                       {
+                           orderItems[newPosition + 2].OrderValue++;
+                           newPosition++;
+                           if (newPosition == orderItems.Length - 2)
+                           {
+                               break;
+                           }
+                       }
+                   }
+               }
+
+               return orderItems;
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e.Message);
+           }
+           return null;
+        }
     }
 }
