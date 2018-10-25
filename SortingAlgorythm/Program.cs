@@ -83,21 +83,6 @@ namespace SortingAlgorythm
         public int OrderValue { get; set; }
 
         public string OrderName { get; set; }
-
-        public static bool operator >(OrderItem oldItem, OrderItem newItem)
-        {
-            return oldItem.OrderValue > newItem.OrderValue;
-        }
-
-        public static bool operator <(OrderItem oldItem, OrderItem newItem)
-        {
-            return oldItem.OrderValue < newItem.OrderValue;
-        }
-
-        public static double operator +(OrderItem oldItem, OrderItem newItem)
-        {
-            return oldItem.OrderValue + newItem.OrderValue;
-        }
     }
 
     public static class OrderHelper
