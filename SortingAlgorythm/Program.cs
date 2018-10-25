@@ -8,73 +8,7 @@ namespace SortingAlgorythm
     {
         static void Main(string[] args)
         {
-            var inputList = new List<OrderItem>()
-            {
-                new OrderItem()
-                {
-                    OrderName = "I1",
-                    OrderValue = 1
-                },
-                new OrderItem()
-                {
-                    OrderName = "I2",
-                    OrderValue = 5
-                },
-                new OrderItem()
-                {
-                    OrderName = "I3",
-                    OrderValue = 10
-                },
-                new OrderItem()
-                {
-                    OrderName = "I4",
-                    OrderValue = 20
-                },
-                new OrderItem()
-                {
-                    OrderName = "I5",
-                    OrderValue = 30
-                }
-            };
-
-            var inputList1 = new List<OrderItem>()
-            {
-                new OrderItem()
-                {
-                    OrderName = "I1",
-                    OrderValue = 5
-                },
-                new OrderItem()
-                {
-                    OrderName = "I2",
-                    OrderValue = 6
-                },
-                new OrderItem()
-                {
-                    OrderName = "I3",
-                    OrderValue = 7
-                },
-                new OrderItem()
-                {
-                    OrderName = "I4",
-                    OrderValue = 8
-                },
-                new OrderItem()
-                {
-                    OrderName = "I5",
-                    OrderValue = 9
-                },
-                new OrderItem()
-                {
-                    OrderName = "I6",
-                    OrderValue = 10
-                }
-            };
-
-            //var newList = OrderHelper.Reorder(inputList1, 0, 1).OrderBy(x => x.OrderValue).ToArray();
-
-
-            Console.ReadLine();
+           
         }
     }
 
@@ -104,7 +38,7 @@ namespace SortingAlgorythm
                int newOrderValue;
                var orderItems = source as OrderItem[] ?? source.ToArray();
 
-               if (orderItems[oldPosition] > orderItems[newPosition])
+               if (orderItems[oldPosition].OrderValue > orderItems[newPosition].OrderValue)
                {
                    if (newPosition == 0)
                    {
@@ -113,7 +47,7 @@ namespace SortingAlgorythm
                    }
                    else
                    {
-                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue, orderItems[newPosition - 1].OrderValue);
+                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue + orderItems[newPosition - 1].OrderValue, 2);
                        orderItems[oldPosition].OrderValue = newOrderValue;
                    }
 
@@ -128,7 +62,7 @@ namespace SortingAlgorythm
                    }
 
                }
-               else if (orderItems[oldPosition] < orderItems[newPosition])
+               else if (orderItems[oldPosition].OrderValue < orderItems[newPosition].OrderValue)
                {
                    if (newPosition == orderItems.Length - 1)
                    {
@@ -136,7 +70,7 @@ namespace SortingAlgorythm
                    }
                    else
                    {
-                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue, orderItems[newPosition + 1].OrderValue);
+                       newOrderValue = DivideRoundingUp(orderItems[newPosition].OrderValue + orderItems[newPosition + 1].OrderValue, 2);
                        orderItems[oldPosition].OrderValue = newOrderValue;
 
                        if (newOrderValue != orderItems[newPosition + 1].OrderValue) return orderItems;

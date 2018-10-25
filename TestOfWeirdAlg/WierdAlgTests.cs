@@ -20,8 +20,6 @@ namespace TestOfWeirdAlg
             #region TestData
             var inputList1 = new List<OrderItem>()
             {
-
-
                 new OrderItem()
                 {
                     OrderName = "I1",
@@ -331,7 +329,13 @@ namespace TestOfWeirdAlg
 
             //Assert
 
-            var newList = OrderHelper.Reorder(inputList1, 4, 1).OrderBy(x => x.OrderValue).Select(x => x.OrderName).ToArray();
+            var newList = OrderHelper.Reorder(inputList1, 4, 1).OrderBy(x => x.OrderValue).Select(x => new
+            {
+                x.OrderName,
+                x.OrderValue
+            }).ToArray();
+
+        
 
             //Act
 
@@ -369,7 +373,11 @@ namespace TestOfWeirdAlg
                     OrderName = "I6",
                     OrderValue = 10
                 }
-            }.Select(x => x.OrderName).ToArray();
+            }.Select(x => new
+            {
+                x.OrderName,
+                x.OrderValue
+            }).ToArray();
 
 
             #endregion
@@ -470,57 +478,5 @@ namespace TestOfWeirdAlg
         }
 
         #endregion
-
-        [TestMethod]
-        public void TestMethodForInsertingRandom()
-        {
-            //Arrange
-
-            #region TestData
-            var inputList1 = new List<OrderItem>()
-            {
-                new OrderItem()
-                {
-                    OrderName = "I1",
-                    OrderValue = 5
-                },
-                new OrderItem()
-                {
-                    OrderName = "I2",
-                    OrderValue = 10
-                },
-                new OrderItem()
-                {
-                    OrderName = "I3",
-                    OrderValue = 15
-                },
-                new OrderItem()
-                {
-                    OrderName = "I4",
-                    OrderValue = 20
-                },
-                new OrderItem()
-                {
-                    OrderName = "I5",
-                    OrderValue = 25
-                },
-                new OrderItem()
-                {
-                    OrderName = "I6",
-                    OrderValue = 30
-                }
-            };
-
-            #endregion
-
-            //Assert
-
-            var newList = OrderHelper.Reorder(inputList1, 4, 5).OrderBy(x => x.OrderValue).Select(x => new
-            {
-                x.OrderName,
-                x.OrderValue
-            }).ToArray();
-
-        }
     }
 }
